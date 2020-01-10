@@ -12,21 +12,21 @@ attribution: 'Map data © <a href="https://www.openstreetmap.org/">OpenStreetMap
     accessToken: API_KEY
 });
 
-// We create the light view tile layer that will be the background of our map.
+// We create the dark view tile layer that will be the background of our map.
 let dark = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/dark-v10/tiles/{z}/{x}/{y}?access_token={accessToken}', {
 attribution: 'Map data © <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery (c) <a href="https://www.mapbox.com/">Mapbox</a>',
 	maxZoom: 18,
 	accessToken: API_KEY
 });
 
-// Create a base layer that holds both maps.
+// Create a base layer that holds all three maps.
 let baseMaps = {
     "Streets": streets,
     "Satellite Streets": satelliteStreets,
     "Dark map": dark
 };
 
-// Create the earthquake layer for our map.
+// Create the earthquake and tectonic plate layers for our map.
 let earthquakes = new L.layerGroup();
 let plates = new L.layerGroup();
 // We define an overlay that contains the overlays. This overlay will be visible all the time.
@@ -45,7 +45,7 @@ let map = L.map("mapid", {
 // Then we add a control to the map that will allow the user to change which layers are visible.
 L.control.layers(baseMaps, overlays).addTo(map);
 
-// Retrieve the earthquake GeoJSON Data
+// Retrieve the earthquake GeoJSON Data.
 d3.json("https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.geojson").then(function(data) {
     console.log(data);
 
@@ -138,7 +138,7 @@ d3.json("https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.geoj
     legend.addTo(map);
 });
 
-// Create a style for the lines.
+// Create a style for the plate lines.
 let myStyle = {
     color: 'red',
     weight: 2
@@ -153,4 +153,4 @@ d3.json("https://raw.githubusercontent.com/fraxen/tectonicplates/master/GeoJSON/
     }).addTo(plates);
     // Add the tectonic plate layer to our map.
     plates.addTo(map);
-})
+});
