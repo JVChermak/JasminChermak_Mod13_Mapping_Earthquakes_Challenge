@@ -15,3 +15,16 @@ The purpose of the project is to use a map to visually display the differences b
 - Data Source: (earthquake data) https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.geojson; (tectonic plates) https://raw.githubusercontent.com/fraxen/tectonicplates/master/GeoJSON/PB2002_boundaries.json
 - Software: JS, D3, Leaflet
 - Mapbox with API for map
+
+## App
+The map loads with the street view, earthquake circles and tectonic plates showing.
+![Map with street view](/images/earthquake_street_map.png)
+
+Selecting any circle will display more information about the earthquake.
+![Map with circle selected](/images/earthquake_selected.png)
+
+When selecting the upper right menu, you have the option to change the base map to satellite or dark mode.
+![Map with satellite view](/images/earthquake_map_options.png)
+
+You can also remove the earthquake or tectonic plate layers.
+![Map with only plate layer](/images/earthquake_dark_layers.png)
